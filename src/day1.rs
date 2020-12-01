@@ -1,5 +1,4 @@
-use std::io;
-use std::io::BufRead;
+use std::io::{self, BufRead};
 
 const INPUT: &'static str = include_str!("../inputs/day1.txt");
 

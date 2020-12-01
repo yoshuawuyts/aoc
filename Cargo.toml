@@ -13,6 +13,10 @@ authors = [
     "Yoshua Wuyts <yoshuawuyts@gmail.com>"
 ]
 
+[[bin]]
+name = "day1"
+path = "src/day1.rs"
+
 [features]
 
 [dependencies]

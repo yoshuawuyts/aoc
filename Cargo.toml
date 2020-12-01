@@ -1,0 +1,20 @@
+[package]
+name = "aoc"
+version = "1.0.0"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/yoshuawuyts/aoc"
+documentation = "https://docs.rs/aoc"
+description = "Advent Of Code"
+readme = "README.md"
+edition = "2018"
+keywords = []
+categories = []
+authors = [
+    "Yoshua Wuyts <yoshuawuyts@gmail.com>"
+]
+
+[features]
+
+[dependencies]
+
+[dev-dependencies]

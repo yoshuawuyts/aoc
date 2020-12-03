@@ -24,11 +24,11 @@ fn main() -> io::Result<()> {
         // }
 
         // Part 2
-        let lhs = match src.chars().skip(n1 - 1).next() {
+        let lhs = match src.chars().nth(n1 - 1) {
             Some(c) => c == pat,
             None => false,
         };
-        let rhs = match src.chars().skip(n2 - 1).next() {
+        let rhs = match src.chars().nth(n2 - 1) {
             Some(c) => c == pat,
             None => false,
         };

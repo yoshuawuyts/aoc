@@ -6,8 +6,7 @@ const INPUT: &'static str = include_str!("../inputs/day3.txt");
 
 fn main() -> io::Result<()> {
     let mut tree_count = 1;
-    let inputs = &[(1, 1), (3, 1), (5, 1), (7, 1), (1, 2)];
-    for (x, y) in inputs {
+    for (x, y) in &[(1, 1), (3, 1), (5, 1), (7, 1), (1, 2)] {
         tree_count *= count(INPUT, *x, *y)?;
     }
     println!("{}", tree_count);

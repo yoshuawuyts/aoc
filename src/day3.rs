@@ -18,8 +18,8 @@ fn count(input: &str, x_step: usize, y_step: usize) -> io::Result<usize> {
     let mut count = 0;
     for line in io::Cursor::new(input).lines().skip(y_step).step_by(y_step) {
         let line = line?;
-        coord += x_step;
-        if line.chars().cycle().skip(coord).next().unwrap() == '#' {
+        coord = (coord + x_step) % line.len();
+        if line.chars().skip(coord).next().unwrap() == '#' {
             count += 1;
         }
     }

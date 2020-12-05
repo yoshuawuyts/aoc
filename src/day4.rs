@@ -67,26 +67,6 @@ impl Passport {
         }
     }
 
-    fn debug(&self) {
-        if !self.validate() {
-            if !self.validate_issue_year() {
-                println!("issue year: {:?}", self.issue_year);
-            } else if !self.validate_birth_year() {
-                println!("birth year: {:?}", self.birth_year);
-            } else if !self.validate_expiration_year() {
-                println!("expiration year: {:?}", self.expiration_year);
-            } else if !self.validate_height() {
-                println!("height: {:?}", self.height);
-            } else if !self.validate_hair_color() {
-                println!("hair color: {:?}", self.hair_color);
-            } else if !self.validate_eye_color() {
-                println!("eye color: {:?}", self.eye_color);
-            } else if !self.validate_passport_id() {
-                println!("passport id: {:?}", self.passport_id);
-            }
-        }
-    }
-
     fn validate(&self) -> bool {
         self.validate_issue_year()
             && self.validate_birth_year()
@@ -156,7 +136,10 @@ impl Passport {
 
     fn validate_eye_color(&self) -> bool {
         match &self.eye_color {
-            Some(s) => matches!(s.as_str(), "amb" | "blu" | "brn" | "grn" | "hzl" | "oth"),
+            Some(s) => matches!(
+                s.as_str(),
+                "amb" | "blu" | "brn" | "grn" | "gry" | "hzl" | "oth"
+            ),
             _ => false,
         }
     }

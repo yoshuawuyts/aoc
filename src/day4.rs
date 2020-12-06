@@ -12,7 +12,6 @@ fn main() -> io::Result<()> {
     let mut count = 0;
     let mut validate_passport = |passport: &Option<Passport>| {
         if let Some(passport) = passport {
-            passport.debug();
             if passport.validate() {
                 count += 1;
             }

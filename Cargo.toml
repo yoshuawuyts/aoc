@@ -38,12 +38,17 @@ name = "day6"
 path = "src/day6.rs"
 
 [[bin]]
-name = "day7"
-path = "src/day7.rs"
+name = "day7-petgraph"
+path = "src/day7_petgraph.rs"
+
+[[bin]]
+name = "day7-datafrog"
+path = "src/day7_datafrog.rs"
 
 [features]
 
 [dependencies]
 petgraph = "0.5.1"
+datafrog = "2.0.1"
 
 [dev-dependencies]

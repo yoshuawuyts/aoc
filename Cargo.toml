@@ -37,8 +37,13 @@ path = "src/day5.rs"
 name = "day6"
 path = "src/day6.rs"
 
+[[bin]]
+name = "day7"
+path = "src/day7.rs"
+
 [features]
 
 [dependencies]
+petgraph = "0.5.1"
 
 [dev-dependencies]

@@ -26,40 +26,32 @@ fn main() {
                     let _count: u16 = count.parse().unwrap();
                     nodes.push((parent.to_string(), parent.to_string()));
                     nodes.push((child.to_string(), child.to_string()));
-                    edges.push((child.to_string(), parent.to_string()));
+                    edges.push((parent.to_string(), child.to_string()));
                 }
             };
         }
     }
-    nodes.dedup();
 
-    // Create a new iteration context, ...
+    // Compute the graph
+    // N(c,a) <- N(b,a), E(b,c)
     let mut iteration = Iteration::new();
-
-    // .. some variables, ..
-    let nodes_var = iteration.variable::<(String, String)>("nodes");
     let edges_var = iteration.variable::<(String, String)>("edges");
-
-    // .. load them with some initial values, ..
-    nodes_var.insert(nodes.into());
+    let nodes_var = iteration.variable::<(String, String)>("nodes");
     edges_var.insert(edges.into());
-
-    // .. and then start iterating rules!
+    nodes_var.insert(nodes.into());
     while iteration.changed() {
-        // E(a,c) <-  E(a,b), E(b,c)
-        nodes_var.from_join(&nodes_var, &edges_var, |_b, a, c| {
-            // println!("E({a},{c}) <- E({a},{b}), E({b},{c})", b = b, a = a, c = c);
+        // join tuples (b, a) + (b, c) into (c, a)
+        nodes_var.from_join(&nodes_var, &edges_var, |b, a, c| {
+            println!("{} -> {} -> {}\t\t{} <- {}", a, b, c, c, a);
             (c.clone(), a.clone())
         });
     }
-
-    // let reachable = edges_var.complete();
-    let count = nodes_var
-        .complete()
+    let graph = nodes_var.complete();
+    let count = graph
         .elements
         .iter()
-        .filter(|(from, to)| from != to)
-        .filter(|(_from, to)| to == "shiny gold")
+        .filter(|(child, parent)| parent != child)
+        .filter(|(child, _)| child == "shiny gold")
         .count();
     println!("{:?}", count);
 }

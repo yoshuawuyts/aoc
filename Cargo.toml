@@ -45,6 +45,10 @@ path = "src/day7_petgraph.rs"
 name = "day7-datafrog"
 path = "src/day7_datafrog.rs"
 
+[[bin]]
+name = "day8"
+path = "src/day8.rs"
+
 [features]
 
 [dependencies]

@@ -19,7 +19,7 @@ fn main() {
     }
 
     let mut i = count;
-    let mut n = last;
+    let n = last;
 
     loop {
         i += 1;

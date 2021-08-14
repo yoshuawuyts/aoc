@@ -1,0 +1,62 @@
+[package]
+name = "aoc-2020"
+version = "1.0.0"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/yoshuawuyts/aoc"
+documentation = "https://docs.rs/aoc"
+description = "Advent Of Code"
+readme = "README.md"
+edition = "2018"
+keywords = []
+categories = []
+authors = [
+    "Yoshua Wuyts <yoshuawuyts@gmail.com>"
+]
+
+[[bin]]
+name = "day1"
+path = "src/day1.rs"
+
+[[bin]]
+name = "day2"
+path = "src/day2.rs"
+
+[[bin]]
+name = "day3"
+path = "src/day3.rs"
+
+[[bin]]
+name = "day4"
+path = "src/day4.rs"
+
+[[bin]]
+name = "day5"
+path = "src/day5.rs"
+
+[[bin]]
+name = "day6"
+path = "src/day6.rs"
+
+[[bin]]
+name = "day7-petgraph"
+path = "src/day7_petgraph.rs"
+
+[[bin]]
+name = "day7-datafrog"
+path = "src/day7_datafrog.rs"
+
+[[bin]]
+name = "day8"
+path = "src/day8.rs"
+
+[[bin]]
+name = "day15"
+path = "src/day15.rs"
+
+[features]
+
+[dependencies]
+petgraph = "0.5.1"
+datafrog = "2.0.1"
+
+[dev-dependencies]

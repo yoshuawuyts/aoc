@@ -49,6 +49,10 @@ path = "src/day7_datafrog.rs"
 name = "day8"
 path = "src/day8.rs"
 
+[[bin]]
+name = "day15"
+path = "src/day15.rs"
+
 [features]
 
 [dependencies]

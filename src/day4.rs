@@ -1,7 +1,5 @@
 //! https://adventofcode.com/2020/day/4
 
-#![feature(str_split_once)]
-
 use std::io::{self, BufRead};
 
 // const INPUT: &'static str = include_str!("../inputs/day4_ex1.txt");

@@ -1,7 +1,5 @@
 //! https://adventofcode.com/2020/day/15
 
-#![feature(str_split_once)]
-
 // const INPUT: &'static str = include_str!("../inputs/day15_ex1.txt");
 use std::collections::HashMap;
 

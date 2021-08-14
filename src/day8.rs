@@ -1,7 +1,5 @@
 //! https://adventofcode.com/2020/day/6
 
-#![feature(str_split_once)]
-
 const INPUT: &'static str = include_str!("../inputs/day8_ex2.txt");
 use std::collections::HashSet;
 

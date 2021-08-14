@@ -1,5 +1,4 @@
 //! https://adventofcode.com/2020/day/7
-#![feature(str_split_once)]
 
 use petgraph::{graph::NodeIndex, visit::EdgeRef, Directed, Direction, Graph};
 use std::collections::{HashMap, HashSet};
@@ -84,7 +83,7 @@ impl Tree {
                     walk_parents(index, &graph, set);
                 }
             }
-        };
+        }
 
         let mut set = HashSet::new();
         walk_parents(self.nodes[node_name], &self.graph, &mut set);
@@ -111,7 +110,7 @@ impl Tree {
                 }
             }
             total
-        };
+        }
 
         let mut set = HashMap::new();
         walk_children(self.nodes[node_name], &self.graph, &mut set) - 1

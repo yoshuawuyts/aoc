@@ -1,5 +1,4 @@
 //! https://adventofcode.com/2020/day/7
-#![feature(str_split_once)]
 
 const INPUT: &'static str = include_str!("../inputs/day7_ex1.txt");
 

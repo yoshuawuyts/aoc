@@ -1,81 +1,95 @@
-use std::{collections::HashSet, num::ParseIntError, str::FromStr};
+use std::{
+    collections::{HashMap, HashSet},
+    num::ParseIntError,
+    str::FromStr,
+};
 
 const INPUT: &'static str = include_str!("../inputs/3.txt");
 
+type Coords = (i64, i64);
+
 pub fn run() {
-    println!("day 3.1: {}", compute(parse(INPUT)));
+    let (l, r) = compute(parse(INPUT));
+    println!("day 3.1: {}", l);
+    println!("day 3.2: {}", r);
 }
 
-fn compute(ops: (Vec<Op>, Vec<Op>)) -> i64 {
+fn compute(ops: (Vec<Op>, Vec<Op>)) -> (i64, usize) {
     let left = ops.0;
     let right = ops.1;
 
-    let left = populate_positions(left);
-    let right = populate_positions(right);
-    let intersect = left.intersection(&right);
+    let (l_set, l_map) = populate_positions(left);
+    let (r_set, r_map) = populate_positions(right);
+    let intersect = l_set.intersection(&r_set);
 
-    let mut lowest = i64::MAX;
+    let mut lowest_manhattan = i64::MAX;
+    let mut lowest_steps = usize::MAX;
     for (mut l, mut r) in intersect.into_iter() {
+        lowest_steps = (l_map[&(l, r)] + r_map[&(l, r)]).min(lowest_steps);
         if l.is_negative() {
             l = -l;
         }
         if r.is_negative() {
             r = -r;
         }
-        lowest = (l + r).min(lowest);
+        lowest_manhattan = (l + r).min(lowest_manhattan);
     }
-    lowest
+    (lowest_manhattan, lowest_steps)
 }
 
-fn populate_positions(left: Vec<Op>) -> HashSet<(i64, i64)> {
+fn populate_positions(ops: Vec<Op>) -> (HashSet<Coords>, HashMap<Coords, usize>) {
     let mut cursor: (i64, i64) = (0, 0);
-    let mut output = HashSet::new();
-    for op in left {
+    let mut distance = 0;
+    let mut set = HashSet::with_capacity(ops.len());
+    let mut map = HashMap::with_capacity(ops.len());
+    for op in ops.into_iter() {
         match op {
             Op::Up(n) => {
                 for _ in 0..n {
                     cursor.1 += 1;
-                    output.insert(cursor);
+                    set.insert(cursor);
+                    distance += 1;
+                    map.insert(cursor, distance);
                 }
             }
             Op::Right(n) => {
                 for _ in 0..n {
                     cursor.0 += 1;
-                    output.insert(cursor);
+                    set.insert(cursor);
+                    distance += 1;
+                    map.insert(cursor, distance);
                 }
             }
             Op::Down(n) => {
                 for _ in 0..n {
                     cursor.1 -= 1;
-                    output.insert(cursor);
+                    set.insert(cursor);
+                    distance += 1;
+                    map.insert(cursor, distance);
                 }
             }
             Op::Left(n) => {
                 for _ in 0..n {
                     cursor.0 -= 1;
-                    output.insert(cursor);
+                    set.insert(cursor);
+                    distance += 1;
+                    map.insert(cursor, distance);
                 }
             }
         }
     }
-    output
+    (set, map)
 }
 
 fn parse(s: &str) -> (Vec<Op>, Vec<Op>) {
     let mut iter = s.split('\n');
-    let left = iter
-        .next()
-        .unwrap()
-        .split(',')
-        .map(|s| Op::from_str(s).unwrap())
-        .collect();
-    let right = iter
-        .next()
-        .unwrap()
-        .split(',')
-        .map(|s| Op::from_str(s).unwrap())
-        .collect();
-    (left, right)
+    let left = parse(iter.next().unwrap());
+    let right = parse(iter.next().unwrap());
+    return (left, right);
+
+    fn parse(s: &str) -> Vec<Op> {
+        s.split(',').map(|s| Op::from_str(s).unwrap()).collect()
+    }
 }
 
 #[derive(Debug)]
@@ -106,13 +120,23 @@ mod test {
     #[test]
     fn part1() {
         let input = "R8,U5,L5,D3\nU7,R6,D4,L4";
-        assert_eq!(compute(parse(input)), 6);
+        assert_eq!(compute(parse(input)).0, 6);
 
         let input = "R75,D30,R83,U83,L12,D49,R71,U7,L72\nU62,R66,U55,R34,D71,R55,D58,R83";
-        assert_eq!(compute(parse(input)), 159);
+        assert_eq!(compute(parse(input)).0, 159);
 
         let input =
             "R98,U47,R26,D63,R33,U87,L62,D20,R33,U53,R51\nU98,R91,D20,R16,D67,R40,U7,R15,U6,R7";
-        assert_eq!(compute(parse(input)), 135);
+        assert_eq!(compute(parse(input)).0, 135);
+    }
+
+    #[test]
+    fn part2() {
+        let input = "R75,D30,R83,U83,L12,D49,R71,U7,L72\nU62,R66,U55,R34,D71,R55,D58,R83";
+        assert_eq!(compute(parse(input)).1, 610);
+
+        let input =
+            "R98,U47,R26,D63,R33,U87,L62,D20,R33,U53,R51\nU98,R91,D20,R16,D67,R40,U7,R15,U6,R7";
+        assert_eq!(compute(parse(input)).1, 410);
     }
 }

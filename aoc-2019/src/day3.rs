@@ -92,12 +92,22 @@ fn parse(s: &str) -> (Vec<Op>, Vec<Op>) {
     }
 }
 
-#[derive(Debug)]
 enum Op {
     Up(usize),
     Right(usize),
     Down(usize),
     Left(usize),
+}
+
+impl std::fmt::Debug for Op {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Self::Up(arg1) => write!(f, "Up"),
+            Self::Right(arg1) => write!(f, "Right"),
+            Self::Down(arg1) => write!(f, "Down"),
+            Self::Left(arg1) => write!(f, "Left"),
+        }
+    }
 }
 
 impl FromStr for Op {

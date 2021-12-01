@@ -1,5 +1,7 @@
 const INPUT: &'static str = include_str!("../inputs/1.txt");
 
+use crate::stdx::IterExt;
+
 pub(crate) fn run() {
     let count = parse1(INPUT);
     println!("output 1: {}", count);
@@ -9,17 +11,23 @@ pub(crate) fn run() {
 }
 
 fn parse1(input: &str) -> usize {
-    let lines: Vec<u16> = input.lines().map(|line| line.parse().unwrap()).collect();
-    lines.array_windows().filter(|[n1, n2]| n2 > n1).count()
+    input
+        .lines()
+        .map(|line| line.parse::<u16>().unwrap())
+        .array_windows()
+        .filter(|[n1, n2]| n2 > n1)
+        .count()
 }
 
 fn parse2(input: &str) -> usize {
-    let lines: Vec<u16> = input.lines().map(|line| line.parse().unwrap()).collect();
-    let temp: Vec<_> = lines
+    input
+        .lines()
+        .map(|line| line.parse::<u16>().unwrap())
         .array_windows()
         .map(|[n1, n2, n3]| n1 + n2 + n3)
-        .collect();
-    temp.array_windows().filter(|[n1, n2]| n2 > n1).count()
+        .array_windows()
+        .filter(|[n1, n2]| n2 > n1)
+        .count()
 }
 
 #[cfg(test)]

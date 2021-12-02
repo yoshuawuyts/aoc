@@ -4,10 +4,10 @@ use crate::stdx::IterExt;
 
 pub(crate) fn run() {
     let count = parse1(INPUT);
-    println!("output 1: {}", count);
+    println!("day 1, output 1: {}", count);
 
     let count = parse2(INPUT);
-    println!("output 2: {}", count);
+    println!("day 1, output 2: {}", count);
 }
 
 fn parse1(input: &str) -> usize {

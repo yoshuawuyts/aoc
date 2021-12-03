@@ -1,4 +1,3 @@
-
 pub trait IterExt<T>: Iterator<Item = T>
 where
     Self: Sized,

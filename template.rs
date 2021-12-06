@@ -1,15 +1,15 @@
-const INPUT: &'static str = include_str!("../inputs/5.txt");
+const INPUT: &'static str = include_str!("../inputs/X.txt");
 
 pub fn run() {
-    println!("day 5, output 1: {}", parse1(INPUT));
-    println!("day 5, output 2: {}", parse2(INPUT));
+    println!("day X, output 1: {}", parse1(INPUT));
+    println!("day X, output 2: {}", parse2(INPUT));
 }
 
-pub fn parse1(s: &str) -> usize {
+pub fn parse1(_s: &str) -> usize {
     todo!()
 }
 
-pub fn parse2(s: &str) -> usize {
+pub fn parse2(_s: &str) -> usize {
     todo!()
 }
 

@@ -73,13 +73,13 @@ pub fn parse1(s: &str) -> usize {
 #[derive(Debug, PartialEq)]
 enum Token {
     LCurl,  // {
-    RCurl,  // }
+    // RCurl,  // }
     LBrack, // [
-    RBrack, // ]
+    // RBrack, // ]
     LBrace, // (
-    RBrace, // )
+    // RBrace, // )
     LPoint, // <
-    RPoint, // >
+    // RPoint, // >
 }
 
 pub fn parse2(s: &str) -> usize {
@@ -154,7 +154,7 @@ fn score_line(line: &str, scores: &mut Vec<usize>) {
             Token::LBrack => score += 2,
             Token::LBrace => score += 1,
             Token::LPoint => score += 4,
-            _ => unreachable!(),
+            // _ => unreachable!(),
         }
     }
     scores.push(score);

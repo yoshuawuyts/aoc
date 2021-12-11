@@ -45,9 +45,9 @@ pub fn parse1(s: &str) -> usize {
     sum
 }
 
-pub fn parse2(_s: &str) -> usize {
-    todo!()
-}
+// pub fn parse2(_s: &str) -> usize {
+//     todo!()
+// }
 
 #[cfg(test)]
 mod test {
@@ -64,8 +64,8 @@ mod test {
         assert_eq!(parse1(INPUT), 15);
     }
 
-    #[test]
-    fn second() {
-        assert_eq!(parse2(INPUT), 0);
-    }
+    // #[test]
+    // fn second() {
+    //     assert_eq!(parse2(INPUT), 0);
+    // }
 }

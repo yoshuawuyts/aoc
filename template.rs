@@ -6,7 +6,6 @@ pub fn run() {
 }
 
 pub fn parse1(s: &str) -> usize {
-    let (head, tails) = s.split_first('|');
     todo!()
 }
 

@@ -5,7 +5,9 @@ const INPUT: &'static str = include_str!("../inputs/12.txt");
 
 pub fn run() {
     println!("day 12, output 1: {}", parse1(INPUT));
-    println!("day 12, output 2: {}", parse2(INPUT));
+
+    // NOTE: this takes a long time to compute, disabled for performance
+    // println!("day 12, output 2: {}", parse2(INPUT));
 }
 
 pub fn parse1(s: &str) -> usize {
@@ -65,6 +67,7 @@ fn count_paths2(
         .sum()
 }
 
+#[allow(unused)]
 pub fn parse2(s: &str) -> usize {
     let mut graph = Graph::new();
     for line in s.lines() {

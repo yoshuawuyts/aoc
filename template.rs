@@ -5,11 +5,11 @@ pub fn run() {
     // println!("day X, output 2: {}", parse2(INPUT));
 }
 
-pub fn parse1(_s: &str) -> usize {
+pub fn parse1(s: &str) -> usize {
     todo!()
 }
 
-// pub fn parse2(_s: &str) -> usize {
+// pub fn parse2(s: &str) -> usize {
 //     todo!()
 // }
 
